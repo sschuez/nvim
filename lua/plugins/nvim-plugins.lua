@@ -3,7 +3,7 @@ return {
   -- { "tpope/vim-surround" },
   -- { "tpope/vim-ragtag" },
   { "mg979/vim-visual-multi" },
-  -- { "tpope/vim-rails" },
+  { "tpope/vim-rails" },
   -- { "vim-ruby/vim-ruby" },
   -- { "brenoprata10/nvim-highlight-colors" },
 }
