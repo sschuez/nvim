@@ -2,14 +2,6 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
--- Add ERB tags
--- vim.cmd([[
---   " Normal mode mappings to insert ERB tags and place the cursor in the middle
---   autocmd FileType eruby,html.erb nnoremap <buffer> <Leader>r= i<%=  %><Esc>F%hi
---   autocmd FileType eruby,html.erb nnoremap <buffer> <Leader>r- i<%  %><Esc>F%hi
---   autocmd FileType eruby,html.erb nnoremap <buffer> <Leader>r# i<%#  %><Esc>F%hi
--- ]])
-
 -- Add transparency
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
