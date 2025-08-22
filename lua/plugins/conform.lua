@@ -38,25 +38,16 @@ return {
         -- ["lua"] = { "stylua" },
       },
       formatters = {
+        -- ERB formatters - require erb_lint and htmlbeautifier gems in project
         erb_lint_ruby = {
-          command = "bash",
-          args = {
-            "-c",
-            "file=\"$1\"; dir=\"$(dirname \"$file\")\"; while [ \"$dir\" != \"/\" ] && [ ! -f \"$dir/Gemfile\" ]; do dir=\"$(dirname \"$dir\")\"; done; if [ -f \"$dir/Gemfile\" ]; then cd \"$dir\" && bundle exec erb_lint --autocorrect --format compact --config .erb_lint.yml \"$file\" 2>/dev/null || true; fi",
-            "_",
-            "$FILENAME",
-          },
+          command = "bundle",
+          args = { "exec", "erb_lint", "--autocorrect", "--format", "compact", "--config", ".erb_lint.yml", "$FILENAME" },
           stdin = false,
           exit_codes = { 0, 1 },
         },
         htmlbeautifier = {
-          command = "bash",
-          args = {
-            "-c",
-            "file=\"$1\"; dir=\"$(dirname \"$file\")\"; while [ \"$dir\" != \"/\" ] && [ ! -f \"$dir/Gemfile\" ]; do dir=\"$(dirname \"$dir\")\"; done; if [ -f \"$dir/Gemfile\" ]; then cd \"$dir\" && bundle exec htmlbeautifier --keep-blank-lines 1 \"$file\" 2>/dev/null || true; fi",
-            "_",
-            "$FILENAME",
-          },
+          command = "bundle", 
+          args = { "exec", "htmlbeautifier", "--keep-blank-lines", "0", "$FILENAME" },
           stdin = false,
           exit_codes = { 0 },
         },
