@@ -42,18 +42,7 @@ return {
           command = "bash",
           args = {
             "-c",
-            [[
-              # Find project root (directory with Gemfile)
-              file="$1"
-              dir="$(dirname "$file")"
-              while [[ "$dir" != "/" && ! -f "$dir/Gemfile" ]]; do
-                dir="$(dirname "$dir")"
-              done
-              if [[ -f "$dir/Gemfile" ]]; then
-                cd "$dir"
-                bundle exec erb_lint --autocorrect --format compact --config .erb_lint.yml "$file" 2>/dev/null || true
-              fi
-            ]],
+            "file=\"$1\"; dir=\"$(dirname \"$file\")\"; while [ \"$dir\" != \"/\" ] && [ ! -f \"$dir/Gemfile\" ]; do dir=\"$(dirname \"$dir\")\"; done; if [ -f \"$dir/Gemfile\" ]; then cd \"$dir\" && bundle exec erb_lint --autocorrect --format compact --config .erb_lint.yml \"$file\" 2>/dev/null || true; fi",
             "_",
             "$FILENAME",
           },
@@ -64,18 +53,7 @@ return {
           command = "bash",
           args = {
             "-c",
-            [[
-              # Find project root (directory with Gemfile)
-              file="$1"
-              dir="$(dirname "$file")"
-              while [[ "$dir" != "/" && ! -f "$dir/Gemfile" ]]; do
-                dir="$(dirname "$dir")"
-              done
-              if [[ -f "$dir/Gemfile" ]]; then
-                cd "$dir"
-                bundle exec htmlbeautifier --keep-blank-lines 1 "$file" 2>/dev/null || true
-              fi
-            ]],
+            "file=\"$1\"; dir=\"$(dirname \"$file\")\"; while [ \"$dir\" != \"/\" ] && [ ! -f \"$dir/Gemfile\" ]; do dir=\"$(dirname \"$dir\")\"; done; if [ -f \"$dir/Gemfile\" ]; then cd \"$dir\" && bundle exec htmlbeautifier --keep-blank-lines 1 \"$file\" 2>/dev/null || true; fi",
             "_",
             "$FILENAME",
           },

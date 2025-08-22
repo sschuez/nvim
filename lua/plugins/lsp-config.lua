@@ -14,22 +14,6 @@ return {
           mason = false,
           cmd = { "bundle", "exec", "rubocop", "--lsp" }, -- Use project RuboCop
         },
-        -- Herb LSP for ERB files - provides linting, formatting, and diagnostics
-        herb_ls = {
-          mason = false, -- Use globally installed herb-language-server
-          settings = {
-            herb = {
-              -- Enable format-on-save (experimental - can be disabled if issues occur)
-              formatter = {
-                enable = true,
-                formatOnSave = false, -- Start with false, enable manually when ready
-              },
-              linter = {
-                enable = true,
-              },
-            },
-          },
-        },
       },
     },
   },
