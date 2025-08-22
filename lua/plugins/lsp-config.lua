@@ -26,15 +26,15 @@ return {
       },
       servers = {
         ruby_lsp = {
-          mason = false, -- Disable Mason for Ruby LSP
-          cmd = { "ruby-lsp" }, -- Let mise handle the PATH
+          mason = false,
+          cmd = { "bundle", "exec", "ruby-lsp" },
           init_options = {
-            formatter = "auto", -- Automatically choose the formatter
+            formatter = "auto",
           },
         },
         rubocop = {
           mason = false,
-          cmd = { "bundle", "exec", "rubocop", "--lsp" }, -- Use project RuboCop
+          cmd = { "bundle", "exec", "rubocop", "--lsp" },
         },
         herb_ls = {
           mason = false,

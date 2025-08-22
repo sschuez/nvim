@@ -47,7 +47,7 @@ return {
         },
         htmlbeautifier = {
           command = "bundle", 
-          args = { "exec", "htmlbeautifier", "--keep-blank-lines", "0", "$FILENAME" },
+          args = { "exec", "htmlbeautifier", "--keep-blank-lines", "1", "$FILENAME" },
           stdin = false,
           exit_codes = { 0 },
         },
