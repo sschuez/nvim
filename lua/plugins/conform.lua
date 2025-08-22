@@ -39,28 +39,44 @@ return {
       },
       formatters = {
         erb_lint_ruby = {
-          command = "bundle",
+          command = "bash",
           args = {
-            "exec",
-            "erb_lint",
-            "--autocorrect",
-            "--format",
-            "compact",
-            "--config",
-            ".erb_lint.yml",
+            "-c",
+            [[
+              # Find project root (directory with Gemfile)
+              file="$1"
+              dir="$(dirname "$file")"
+              while [[ "$dir" != "/" && ! -f "$dir/Gemfile" ]]; do
+                dir="$(dirname "$dir")"
+              done
+              if [[ -f "$dir/Gemfile" ]]; then
+                cd "$dir"
+                bundle exec erb_lint --autocorrect --format compact --config .erb_lint.yml "$file" 2>/dev/null || true
+              fi
+            ]],
+            "_",
             "$FILENAME",
           },
           stdin = false,
           exit_codes = { 0, 1 },
         },
-        -- To debug: bundle exec htmlbeautifier --indent 2 app/path/of/file.html.erb                                                                                                                                        main
         htmlbeautifier = {
-          command = "bundle",
+          command = "bash",
           args = {
-            "exec",
-            "htmlbeautifier",
-            "--keep-blank-lines",
-            "1",
+            "-c",
+            [[
+              # Find project root (directory with Gemfile)
+              file="$1"
+              dir="$(dirname "$file")"
+              while [[ "$dir" != "/" && ! -f "$dir/Gemfile" ]]; do
+                dir="$(dirname "$dir")"
+              done
+              if [[ -f "$dir/Gemfile" ]]; then
+                cd "$dir"
+                bundle exec htmlbeautifier --keep-blank-lines 1 "$file" 2>/dev/null || true
+              fi
+            ]],
+            "_",
             "$FILENAME",
           },
           stdin = false,
