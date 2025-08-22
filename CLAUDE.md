@@ -12,6 +12,13 @@ This is a Neovim configuration built on LazyVim, a modern Neovim distribution. T
 
 - `stylua .` - Format Lua code using StyLua (configured in stylua.toml with 2-space indentation, 120 column width)
 - `bundle exec rubocop --lsp` - Ruby linting (requires project Gemfile with RuboCop)
+
+#### ERB/HTML Formatting (Herb Tools - Fast C-based)
+- `herb-format <file>` or `herb-format --stdin` - Fast ERB/HTML formatting (sub-10ms vs 100+ms legacy)
+- `herb-lint <file>` - ERB/HTML linting with 20+ rules and detailed diagnostics
+- `herb-language-server` - LSP server providing real-time formatting and linting
+
+#### Legacy ERB Formatting (Slow - replaced by Herb)
 - `bundle exec erb_lint --autocorrect --format compact --config .erb_lint.yml <file>` - ERB template linting
 - `bundle exec htmlbeautifier --keep-blank-lines 1 <file>` - HTML/ERB formatting
 
@@ -37,6 +44,7 @@ This is a Neovim configuration built on LazyVim, a modern Neovim distribution. T
 
 - Ruby LSP via ruby-lsp gem (requires rbenv setup at ~/.rbenv/shims/ruby-lsp)
 - RuboCop LSP integration for linting
+- Herb LSP for ERB files - provides real-time formatting, linting, and diagnostics
 - Mason disabled for Ruby tooling to use project-local versions
 
 #### AI Integration (lua/plugins/avante.lua)
@@ -48,9 +56,10 @@ This is a Neovim configuration built on LazyVim, a modern Neovim distribution. T
 #### Formatting (lua/plugins/conform.lua)
 
 - Conform.nvim for code formatting
-- Custom ERB formatters: erb_lint_ruby and htmlbeautifier
+- **Herb formatter for ERB files** - C-based parser providing sub-10ms formatting (replaces slow erb_lint + htmlbeautifier)
 - Prettier for JS/TS/CSS/HTML/JSON/YAML/Markdown
 - XML formatting via xmllint
+- Legacy Ruby-based ERB formatters kept for reference but replaced by Herb
 
 #### Ruby on Rails Support
 
@@ -69,6 +78,14 @@ This is a Neovim configuration built on LazyVim, a modern Neovim distribution. T
 
 - Requires rbenv for Ruby version management
 - Requires tmux for test runner integration
+- **Node.js 16+** for Herb tools (@herb-tools/language-server, @herb-tools/formatter, @herb-tools/linter)
 - Node.js dependencies for Prettier XML plugin
 - Bundle/Gemfile setup expected for Ruby projects
+
+### Installation Commands
+
+```bash
+# Install Herb tools globally for fast ERB formatting
+npm install -g @herb-tools/language-server @herb-tools/formatter @herb-tools/linter
+```
 

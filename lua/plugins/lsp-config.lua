@@ -16,8 +16,27 @@ return {
           mason = false,
           cmd = { "bundle", "exec", "rubocop", "--lsp" }, -- Use project RuboCop
         },
-        -- -- minimal setup – extra settings table left here for future options
-        -- herb_ls = {},
+        -- Herb LSP for ERB files - provides linting, formatting, and diagnostics
+        herb_ls = {
+          mason = false, -- Use globally installed herb-language-server
+          cmd = { "herb-language-server" },
+          filetypes = { "eruby" },
+          root_dir = function()
+            return vim.fn.getcwd()
+          end,
+          settings = {
+            herb = {
+              -- Enable format-on-save (experimental - can be disabled if issues occur)
+              formatter = {
+                enable = true,
+                formatOnSave = false, -- Start with false, enable manually when ready
+              },
+              linter = {
+                enable = true,
+              },
+            },
+          },
+        },
       },
     },
   },

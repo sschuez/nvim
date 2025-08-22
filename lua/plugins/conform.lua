@@ -25,10 +25,11 @@ return {
         ["scss"] = { "prettier" },
         ["less"] = { "prettier" },
         ["html"] = { "prettier" },
-        ["eruby"] = { "erb_lint_ruby", "htmlbeautifier" },
+        ["eruby"] = { "herb_format" },
+        -- Legacy slow formatters (replaced by Herb for 10-100x speed improvement):
+        -- ["eruby"] = { "erb_lint_ruby", "htmlbeautifier" },
         -- ["eruby"] = { "erb_lint" },
         -- ["eruby"] = { "erb_format" },
-        -- ["eruby"] = { erb_formatter" },
         ["xml"] = { "xmllint" },
         ["json"] = { "prettier" },
         -- ["jsonc"] = { "prettier" },
@@ -41,6 +42,16 @@ return {
         -- ["lua"] = { "stylua" },
       },
       formatters = {
+        -- === HERB FORMATTERS (Fast C-based parsing) ===
+        -- Herb formatter: Fast C-based ERB/HTML formatter (sub-10ms vs 100+ms)
+        herb_format = {
+          command = "herb-format",
+          args = { "--stdin" },
+          stdin = true,
+          exit_codes = { 0, 1 },
+        },
+
+        -- === LEGACY RUBY-BASED FORMATTERS (Slow - kept for reference) ===
         erb_lint_ruby = {
           command = "bundle",
           args = {
@@ -84,6 +95,7 @@ return {
           stdin = false,
           exit_codes = { 0, 1 },
         },
+        -- Legacy erb-format (slower, replaced by Herb)
         erb_format = {
           command = "erb-format",
           args = {
