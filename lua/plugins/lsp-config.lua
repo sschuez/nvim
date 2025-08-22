@@ -5,11 +5,9 @@ return {
       servers = {
         ruby_lsp = {
           mason = false, -- Disable Mason for Ruby LSP
-          cmd = { vim.fn.expand("~/.rbenv/shims/ruby-lsp") }, -- Path for rbenv
+          cmd = { "ruby-lsp" }, -- Let mise handle the PATH
           init_options = {
             formatter = "auto", -- Automatically choose the formatter
-            -- skipBundlerChecks = true,
-            -- Additional initialization options can be added here
           },
         },
         rubocop = {
@@ -19,11 +17,6 @@ return {
         -- Herb LSP for ERB files - provides linting, formatting, and diagnostics
         herb_ls = {
           mason = false, -- Use globally installed herb-language-server
-          cmd = { "herb-language-server" },
-          filetypes = { "eruby" },
-          root_dir = function()
-            return vim.fn.getcwd()
-          end,
           settings = {
             herb = {
               -- Enable format-on-save (experimental - can be disabled if issues occur)

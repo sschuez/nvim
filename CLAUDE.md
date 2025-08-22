@@ -14,11 +14,13 @@ This is a Neovim configuration built on LazyVim, a modern Neovim distribution. T
 - `bundle exec rubocop --lsp` - Ruby linting (requires project Gemfile with RuboCop)
 
 #### ERB/HTML Formatting (Herb Tools - Fast C-based)
+
 - `herb-format <file>` or `herb-format --stdin` - Fast ERB/HTML formatting (sub-10ms vs 100+ms legacy)
 - `herb-lint <file>` - ERB/HTML linting with 20+ rules and detailed diagnostics
 - `herb-language-server` - LSP server providing real-time formatting and linting
 
 #### Legacy ERB Formatting (Slow - replaced by Herb)
+
 - `bundle exec erb_lint --autocorrect --format compact --config .erb_lint.yml <file>` - ERB template linting
 - `bundle exec htmlbeautifier --keep-blank-lines 1 <file>` - HTML/ERB formatting
 
@@ -89,3 +91,6 @@ This is a Neovim configuration built on LazyVim, a modern Neovim distribution. T
 npm install -g @herb-tools/language-server @herb-tools/formatter @herb-tools/linter
 ```
 
+## Important Notes
+
+**Do not include Claude/AI references in PRs or commits.** All pull request descriptions and commit messages should be professional and not mention AI assistance, Claude Code, or similar references.
