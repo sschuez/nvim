@@ -44,9 +44,13 @@ return {
       formatters = {
         -- === HERB FORMATTERS (Fast C-based parsing) ===
         -- Herb formatter: Fast C-based ERB/HTML formatter (sub-10ms vs 100+ms)
+        -- Uses bash wrapper to filter out experimental preview warnings
         herb_format = {
-          command = "herb-format",
-          args = { "--stdin" },
+          command = "bash",
+          args = {
+            "-c",
+            "herb-format --stdin | sed '/^⚠️.*Experimental Preview/d' | sed '/Please report any unexpected behavior/d' | sed '/github.com\\/marcoroth\\/herb\\/issues/d'",
+          },
           stdin = true,
           exit_codes = { 0, 1 },
         },
