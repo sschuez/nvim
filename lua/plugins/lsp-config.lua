@@ -16,6 +16,8 @@ return {
           mason = false,
           cmd = { "bundle", "exec", "rubocop", "--lsp" }, -- Use project RuboCop
         },
+        -- -- minimal setup – extra settings table left here for future options
+        -- herb_ls = {},
       },
     },
   },
