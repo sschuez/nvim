@@ -49,7 +49,7 @@ return {
           command = "bash",
           args = {
             "-c",
-            "herb-format --stdin | sed '/^⚠️.*Experimental Preview/d' | sed '/Please report any unexpected behavior/d' | sed '/github.com\\/marcoroth\\/herb\\/issues/d'",
+            "herb-format --stdin | sed '/^⚠️.*Experimental Preview/d; /Please report any unexpected behavior/d; /github.com\\/marcoroth\\/herb\\/issues/d' | sed '1{/^[[:space:]]*$/d;}'",
           },
           stdin = true,
           exit_codes = { 0, 1 },
