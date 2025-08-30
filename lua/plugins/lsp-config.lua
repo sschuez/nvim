@@ -6,7 +6,7 @@ return {
         herb_ls = function(_, opts)
           local lspconfig = require("lspconfig")
           local configs = require("lspconfig.configs")
-          
+
           -- Define herb_ls as a custom server if not already defined
           if not configs.herb_ls then
             configs.herb_ls = {
@@ -19,22 +19,20 @@ return {
               },
             }
           end
-          
+
           lspconfig.herb_ls.setup(opts)
           return true -- Prevent default setup
         end,
       },
       servers = {
         ruby_lsp = {
-          mason = false,
+          mason = false, -- Avoid Mason as recommended by Shopify
           cmd = { "bundle", "exec", "ruby-lsp" },
+          filetypes = { "ruby" }, -- Exclude ERB files to avoid parsing turbo_stream issues
           init_options = {
-            formatter = "auto",
+            formatter = "auto", -- Will detect RuboCop from your project
+            linters = { "rubocop" }, -- Use your project's RuboCop config
           },
-        },
-        rubocop = {
-          mason = false,
-          cmd = { "bundle", "exec", "rubocop", "--lsp" },
         },
         herb_ls = {
           mason = false,

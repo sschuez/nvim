@@ -41,12 +41,21 @@ return {
         -- ERB formatters - require erb_lint and htmlbeautifier gems in project
         erb_lint_ruby = {
           command = "bundle",
-          args = { "exec", "erb_lint", "--autocorrect", "--format", "compact", "--config", ".erb_lint.yml", "$FILENAME" },
+          args = {
+            "exec",
+            "erb_lint",
+            "--autocorrect",
+            "--format",
+            "compact",
+            "--config",
+            ".erb_lint.yml",
+            "$FILENAME",
+          },
           stdin = false,
           exit_codes = { 0, 1 },
         },
         htmlbeautifier = {
-          command = "bundle", 
+          command = "bundle",
           args = { "exec", "htmlbeautifier", "--keep-blank-lines", "1", "$FILENAME" },
           stdin = false,
           exit_codes = { 0 },

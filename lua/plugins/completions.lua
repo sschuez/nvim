@@ -9,9 +9,6 @@ return {
     "hrsh7th/cmp-path",
   },
   {
-    "hrsh7th/cmp-cmdline",
-  },
-  {
     "L3MON4D3/LuaSnip",
     dependencies = {
       "saadparwaiz1/cmp_luasnip",
@@ -39,12 +36,6 @@ return {
         window = {
           completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
-        },
-        completion = {
-          completeopt = "menu,menuone,noinsert",
-        },
-        experimental = {
-          ghost_text = true,
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -81,8 +72,8 @@ return {
         sources = cmp.config.sources({
           { name = "nvim_lsp", priority = 1000 },
           { name = "luasnip", priority = 750 },
+          { name = "buffer", priority = 600, keyword_length = 2 },
         }, {
-          { name = "buffer", priority = 500, keyword_length = 3 },
           { name = "path", priority = 250 },
         }),
         formatting = {
