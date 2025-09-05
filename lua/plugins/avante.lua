@@ -4,21 +4,42 @@ return {
     event = "VeryLazy",
     version = false, -- Never set this value to "*"! Never!
     opts = {
-      -- add any opts here
-      -- for example
+      -- this file can contain specific instructions for your project
+      instructions_file = "avante.md",
+      -- Switch to OpenAI as primary to avoid rate limits
       provider = "openai",
+      -- Disable global temperature to let GPT-5 mini use default
+      temperature = 1.0, -- GPT-5 mini only supports default temperature
       providers = {
+        -- OpenAI as primary - GPT-5 mini for superior coding performance
         openai = {
           endpoint = "https://api.openai.com/v1",
-          model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+          model = "gpt-4o", -- Fall back to GPT-4o which supports temperature
+          timeout = 30000,
           extra_request_body = {
-            -- timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-            temperature = 0.75,
-            max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-            --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+            max_completion_tokens = 4096, -- Reasonable token limit
+          },
+        },
+        -- Claude as secondary option for complex tasks
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          model = "claude-3-5-sonnet-20241022", -- More stable model
+          timeout = 30000,
+          extra_request_body = {
+            -- temperature = 0.1, -- Very low for code generation
+            max_tokens = 4096, -- Reduced to avoid rate limits
           },
         },
       },
+      -- Add provider toggle keybinding
+      mappings = {
+        toggle = {
+          provider = "<leader>hp", -- Toggle between providers
+        },
+      },
+      -- Optimize for rate limit management
+      auto_suggestions_provider = "openai", -- Use OpenAI for auto-suggestions
+      dual_boost = { enabled = false }, -- Disable experimental dual requests
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
