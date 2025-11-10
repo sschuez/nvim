@@ -1,3 +1,10 @@
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "*.xml",
+  callback = function()
+    vim.bo.filetype = "xml"
+  end,
+})
+
 return {
   {
     "stevearc/conform.nvim",
