@@ -1,11 +1,18 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    event = { "LazyFile", "VeryLazy" },
-    build = ":TSUpdate",
     opts = {
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = true,
+      },
+      indent = {
+        enable = true,
+      },
+      folds = { enable = true },
       ensure_installed = {
         "css",
+        "bash",
         "diff",
         "helm",
         "html",
@@ -13,6 +20,7 @@ return {
         "json",
         "lua",
         "markdown",
+        "markdown_inline",
         "python",
         "regex",
         "ruby",
@@ -20,15 +28,11 @@ return {
         "slim",
         "ssh_config",
         "tmux",
+        "typescript",
         "vim",
+        "vimdoc",
         "yaml",
       },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = true,
-      },
-      indent = { enable = true },
     },
   },
 }

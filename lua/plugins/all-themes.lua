@@ -12,7 +12,11 @@ return {
       flavour = "auto", -- Will be overridden by individual theme files
     },
   },
-
+  {
+    "kepano/flexoki-neovim",
+    lazy = true,
+    priority = 1000,
+  },
   -- Everforest (dark and light variants)
   {
     "neanias/everforest-nvim",

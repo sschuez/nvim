@@ -34,6 +34,66 @@
 ### Custom Mappings
 - `Y` - Yank to end of line (consistent with D and C)
 
+## vim-rails Navigation
+
+### Go to File (gf variants)
+- `gf` - Go to file under cursor
+  - From `render 'partial_name'` → jumps to `_partial_name.html.erb`
+  - From model name → jumps to model file
+  - From association → jumps to associated model
+- `<C-W>f` - Open file in horizontal split
+- `<C-W>gf` - Open file in new tab
+- `<C-W><C-F>` - Open file in horizontal split (same as `<C-W>f`)
+
+### Alternate Files
+- `:A` - Switch to alternate file (e.g., controller ↔ test)
+- `:AS` - Open alternate in horizontal split
+- `:AV` - Open alternate in vertical split
+- `:AT` - Open alternate in new tab
+
+### Related Files
+- `:R` - Switch to related file (e.g., view → controller)
+- `:RS` - Open related in horizontal split
+- `:RV` - Open related in vertical split
+- `:RT` - Open related in new tab
+
+### Quick Navigation Commands
+- `:Econtroller [name]` - Edit controller
+- `:Emodel [name]` - Edit model
+- `:Eview [name]` - Edit view
+- `:Ehelper [name]` - Edit helper
+- `:Ejavascript [name]` or `:Estylesheet [name]` - Edit assets
+- `:Emigration [name]` - Edit migration
+- `:Espec [name]` or `:Etest [name]` - Edit test/spec
+
+#### Split Variants
+Each navigation command has split variants:
+- `:S` prefix = horizontal split (e.g., `:Scontroller users`)
+- `:V` prefix = vertical split (e.g., `:Vmodel post`)
+- `:T` prefix = new tab (e.g., `:Tview posts/index`)
+
+### Generate/Destroy
+- `:Rgenerate controller posts` - Generate controller
+- `:Rdestroy model post` - Destroy model
+
+### Common Workflow Examples
+```vim
+" Open users controller in vertical split
+:Vcontroller users
+
+" Open post model in horizontal split
+:Smodel post
+
+" Open posts/index view in new tab
+:Tview posts/index
+
+" Navigate to partial from render statement
+" Cursor on 'project_documents' in render 'project_documents'
+gf              " Opens in same window
+<C-W>f          " Opens in horizontal split
+<C-W>gf         " Opens in new tab
+```
+
 ## CodeCompanion (AI Assistant)
 
 ### Main Commands

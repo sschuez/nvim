@@ -1,9 +1,17 @@
 return {
-	{ "rebelot/kanagawa.nvim" },
+	{
+		"tahayvr/matteblack.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.o.background = "dark"
+			vim.cmd.colorscheme("matteblack")
+		end,
+	},
 	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "kanagawa",
+			colorscheme = "matteblack",
 		},
 	},
 }

@@ -7,6 +7,20 @@
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
 
+-- Fix YAML filetype detection for Rails projects
+-- Rails YAML files are detected as eruby.yaml, but we want plain yaml for Treesitter
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "eruby.yaml",
+  command = "set filetype=yaml",
+})
+
+-- Fix turbo_stream.erb filetype detection
+-- turbo_stream.erb files should be eruby, not eruby.html
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "eruby.html",
+  command = "set filetype=eruby",
+})
+
 -- Add transparency
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
