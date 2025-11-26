@@ -4,7 +4,9 @@ return {
     opts = {
       highlight = {
         enable = true,
-        additional_vim_regex_highlighting = true,
+        -- Use array syntax for specific filetypes where vim-rails needs regex highlighting
+        -- This is the LazyVim-recommended approach for Ruby
+        additional_vim_regex_highlighting = { "ruby", "eruby" },
       },
       indent = {
         enable = true,
