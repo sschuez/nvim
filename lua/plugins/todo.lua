@@ -3,8 +3,7 @@ return {
   config = function()
     require("dooing").setup({
       window = {
-        width = 120,
-        height = 40,
+        dimensions = { width = 120, height = 40 },
         border = "rounded",
         position = "center",
         -- 'top-right', 'top-left', 'bottom-right', 'bottom-left'
