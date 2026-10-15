@@ -5,7 +5,6 @@ return {
       ensure_installed = {
         "css-lsp",
         "emmet-ls",
-        "herb-language-server",
         "json-lsp",
         "prettier",
         "tailwindcss-language-server",
