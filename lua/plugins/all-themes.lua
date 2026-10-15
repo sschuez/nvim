@@ -69,7 +69,7 @@ return {
 
   -- Ristretto (Monokai Pro variant)
   {
-    "gthelding/monokai-pro.nvim",
+    "loctvl842/monokai-pro.nvim",
     lazy = true,
     priority = 1000,
   },
